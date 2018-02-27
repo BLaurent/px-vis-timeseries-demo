@@ -1,26 +1,28 @@
 
 <link rel="import" href="/bower_components/polymer/polymer.html"/>
 <link rel="import" href="/bower_components/px-vis-timeseries/px-vis-timeseries.html"/>
+<link rel="import" href="/bower_components/promise-polyfill/promise-polyfill-lite.html"/>
 <link rel="import" href="/bower_components/iron-ajax/iron-ajax.html"/>
 <link rel="import" href="/bower_components/px-vis/px-vis-data-converter.html"/>
 <link rel="import" href="/bower_components/px-theme/px-theme-styles.html"/>
 
+<custom-style>
+  <style include="px-theme-styles" is="custom-style"></style>
+</custom-style>
 
 <dom-module id="timeseries-demo">
   <template>
-    <style include="px-theme-styles" is="custom-style">
+    <style>
       :host {
         width: 100vw;
         height: 100vh;
       }
     </style>
     
-    
     <px-vis-timeseries 
       prevent-resize
-      width="1000" 
+      width="800"
       height="500"
-      margin='{"top":30,"bottom":60,"left":65,"right":65}'
       chart-data="[[chartData]]"
       series-config="[[seriesConfig]]">
     </px-vis-timeseries>
@@ -36,21 +38,14 @@
 
     <iron-ajax
       id="fetch1"
-      url="data1.json"
+      url="/app/data1.json"
       handle-as="json"
       on-response="handleResponse"
       auto>
     </iron-ajax>
     <iron-ajax
       id="fetch2"
-      url="data2.json"
-      handle-as="json"
-      on-response="handleResponse"
-      auto>
-    </iron-ajax>
-        <iron-ajax
-      id="fetch3"
-      url="data3.json"
+      url="/app/data2.json"
       handle-as="json"
       on-response="handleResponse"
       auto>
